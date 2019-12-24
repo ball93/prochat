@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+var ques=["How r u","What are you doing","What do you do","Whats your name","how could you help me","Are you real","How can you help me","Which languages do you know","What do you look like","How old are you"];
+var ans=["Thank you I'm doing well...","Trying to help you out.","I try to entertain you..","I'm Lucy","I can chat with you","Sorry! I'm virtual...","i can only talk to you...","I know English..only","I look like a virtual robot","I'm four months old"];
+  var i=0;
+  function f()
+  { 
+    i+=1;
+    var s=document.getElementById("t1").value;
+    var iDiv = document.createElement('div');
+    iDiv.id = 'block'+i;
+    var v=iDiv.id;
+    iDiv.className = 'container';
+    document.getElementsByTagName('body')[0].appendChild(iDiv);
+    document.getElementById(v).innerHTML=s;
+
+    i+=1;
+    var iDiv = document.createElement('div');
+    iDiv.id = 'block'+i;
+    var v=iDiv.id;
+    iDiv.className = 'container darker';
+    document.getElementsByTagName('body')[0].appendChild(iDiv);
+    var count=0;
+    for(var j=0;j<10;j++)
+    {  
+        if(s==ques[j])
+        {    
+             count++;
+             var res = "<p>"+ans[j]+"</p>";
+             document.getElementById(v).innerHTML=res;
+        }    
+    }
+    if(count==0)
+    {
+        var res = "<p>Sorry unable to understand please ask correctly....</p>";
+        document.getElementById(v).innerHTML=res;
+    }
+  }         
+  function getn()
+  {
+    var b = document.getElementById('name').value;
+    document.getElementById('p1').innerHTML = "Hello "+b;
+  }
+
+  function getParams() 
+  {
+    var idx = document.URL.indexOf('?');
+    var params = new Array();
+    if (idx != -1) {
+    var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
+    for (var i=0; i<pairs.length; i++){
+    nameVal = pairs[i].split('=');
+    params[nameVal[0]] = nameVal[1];
+    }
+    }
+    return params;
+  }
+  params = getParams();
+  name = unescape(params["name"]);
+  document.write("<h1><i>Hello " + name + "</i></h1>");
+  document.getElementById("p1").innerHTML=name;
+
+
+</script>
+
+<style>
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.d1{
+  background-color: #25dbb1;
+  border: 2px solid #dedede;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+.ft{
+  border: 2px solid #dedede;
+  background-color: #ff0000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px 0;
+  position: fixed;
+  bottom:0px;
+}
+.t{
+  padding:10px;
+  width:600px;
+}
+
+.b{
+  padding:10px;
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>Chat Messages</h2>
+
+<div class="ft">
+<input type="text" class="t" id="t1" placeholder="Enter message"/>
+<input type="button" class="b" id="b0" value="Send" onclick="f()"/>
+<input type="button" class="b" id="b1" value="Cancel"/>
+</div>
+</body>
+</html>
